@@ -1,0 +1,45 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+void printList(List<string> list) { list.ForEach((string val) => Console.WriteLine(val)); }
+bool firstDigitOdd(string val) => (Int32.Parse(val.Substring(0, 1)) % 2) != 0;
+
+var orderIds = new List<string>() { "123", "456", "789" };
+printList(orderIds);
+Console.WriteLine($"List has length: {orderIds.Count}");
+Console.WriteLine();
+
+orderIds.Add("012");
+
+printList(orderIds);
+Console.WriteLine($"List has length: {orderIds.Count}");
+Console.WriteLine();
+
+var third = orderIds.GetRange(2, 1).First();
+Console.WriteLine($"third item is: {third}");
+
+var index = orderIds.IndexOf("456");
+Console.WriteLine($"456 is found at {index}");
+
+Console.WriteLine();
+
+var foundOne = orderIds.Find(firstDigitOdd);
+Console.WriteLine($"First item that starts with odd: {foundOne}");
+
+Console.WriteLine();
+
+var found = orderIds.FindAll(firstDigitOdd);
+Console.WriteLine("All items that start with odd numbers:");
+printList(found);
+
+Console.WriteLine();
+
+var modifiedIds = orderIds.ConvertAll((string val) => val + "a");
+Console.WriteLine("Transformed:");
+printList(modifiedIds);
+
+Console.WriteLine();
+
+var inALine = orderIds.Aggregate("INITIAL!", (a, b) => $"{a}, {b}");
+Console.WriteLine($"All together: {inALine}");
